@@ -5,8 +5,8 @@ export interface environment {
 }
 
 export const environment = {
-    production: false,
-    apiUrl: process.env['API_URL'] || 'http://localhost:8080/api',
+    production: true,
+    apiUrl: process.env['API_URL'] || 'https://api.studycorner.com/api',
     firebaseConfig: {
         apiKey: process.env['FIREBASE_API_KEY'] || "AIzaSyB90PQSlyw1Ns-FRoxTtMrJZ9EPFX8N-kE",
         authDomain: process.env['FIREBASE_AUTH_DOMAIN'] || "study-material-e3315.firebaseapp.com",
