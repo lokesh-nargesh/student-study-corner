@@ -1,0 +1,87 @@
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.iml
+*.iws
+*.ipr
+
+# OS
+.DS_Store
+Thumbs.db
+.classpath
+.project
+.settings/
+
+# Backend - Maven
+backend/target/
+backend/.classpath
+backend/.project
+backend/.settings/
+*.jar
+*.war
+*.ear
+.mvn/
+mvnw
+mvnw.cmd
+
+# Backend - Java
+*.class
+*.log
+*.ctxt
+.mtj.tmp/
+.gradle/
+build/
+
+# Frontend - Node
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/.ng/
+
+# Frontend - Build
+frontend/dist/
+frontend/coverage/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+package-lock.json
+yarn.lock
+
+# Compiled sources
+**/*.js
+**/*.js.map
+**/*.d.ts
+!**/*.config.js
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+
+# Mac files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows files
+ehthumbs.db

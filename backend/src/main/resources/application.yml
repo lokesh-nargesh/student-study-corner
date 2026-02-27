@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: study-material-platform
+  datasource:
+    url: jdbc:mysql://localhost:3306/study_material_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: Raj@1432
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: nargeshraj2507@gmail.com
+    password: Raj@2507
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connection-timeout: 5000
+          timeout: 5000
+          write-timeout: 5000
+
+app:
+  jwt:
+    secret: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
+    expiration: 86400000 # 24 hours
+  base-url: http://localhost:8080
+
+google:
+  client-id: YOUR_GOOGLE_CLIENT_ID
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    com.studymaterial.platform: DEBUG
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html

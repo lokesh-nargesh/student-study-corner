@@ -1,0 +1,30 @@
+ER Diagram (Text Format)
+
+[User]
+- collegeId (PK, Unique)
+- name
+- password
+- role (ADMIN, STUDENT)
+- Relationship: 1 User -> Many StudyMaterials
+
+[Course]
+- id (PK)
+- name
+- Relationship: 1 Course -> Many Branches
+
+[Branch]
+- id (PK)
+- name
+- Relationship: 1 Branch -> Many Subjects
+
+[StudyMaterial]
+- id (PK)
+- title
+- materialType (NOTES, ASSIGNMENT, etc.)
+- fileUrl
+- approvalStatus
+- uploadedBy (FK -> User.id)
+- subject (FK -> Subject.id)
+
+Hierarchy:
+Course -> Branch -> AcademicYear -> Semester -> Subject -> StudyMaterial
