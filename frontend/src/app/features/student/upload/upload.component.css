@@ -113,10 +113,11 @@
 .grid-layout.cols-2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
 }
 
 .full-width {
-    width: 100%;
+    grid-column: span 2;
 }
 
 /* Form Field Overrides */
@@ -127,6 +128,11 @@
 ::ng-deep .mat-mdc-text-field-wrapper {
     background: rgba(15, 23, 42, 0.5) !important;
     border-radius: 12px !important;
+    transition: background 0.3s ease;
+}
+
+::ng-deep .mat-mdc-form-field:hover .mat-mdc-text-field-wrapper {
+    background: rgba(30, 41, 59, 0.8) !important;
 }
 
 ::ng-deep .mat-mdc-form-field-focus-indicator {
@@ -147,17 +153,19 @@
 .upload-zone {
     border: 2px dashed rgba(96, 165, 250, 0.3);
     border-radius: 16px;
-    padding: 40px;
+    padding: 60px 40px;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     background: rgba(15, 23, 42, 0.3);
+    position: relative;
 }
 
 .upload-zone:hover {
     border-color: #60a5fa;
-    background: rgba(96, 165, 250, 0.05);
-    transform: translateY(-2px);
+    background: rgba(96, 165, 250, 0.08);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.3);
 }
 
 .upload-zone.has-file {
@@ -167,15 +175,15 @@
 }
 
 .upload-icon {
-    font-size: 48px;
-    width: 48px;
-    height: 48px;
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
     color: #60a5fa;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .pulse {
-    animation: pulse-animation 2s infinite;
+    animation: pulse-animation 2.5s infinite;
 }
 
 @keyframes pulse-animation {
@@ -185,7 +193,7 @@
     }
 
     50% {
-        transform: scale(1.1);
+        transform: scale(1.08);
         opacity: 1;
     }
 
@@ -196,30 +204,33 @@
 }
 
 .upload-text {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-weight: 600;
     color: #fff;
     margin: 0;
 }
 
 .upload-hint {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #94a3b8;
-    margin-top: 4px;
+    margin-top: 8px;
 }
 
 /* File Preview */
 .file-preview {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
     text-align: left;
+    background: rgba(15, 23, 42, 0.4);
+    padding: 20px;
+    border-radius: 12px;
 }
 
 .file-icon {
-    font-size: 40px;
-    width: 40px;
-    height: 40px;
+    font-size: 44px;
+    width: 44px;
+    height: 44px;
     color: #10b981;
 }
 
@@ -229,67 +240,87 @@
 
 .file-info .name {
     color: #fff;
-    font-weight: 500;
+    font-weight: 600;
+    font-size: 1.1rem;
     margin: 0;
     word-break: break-all;
 }
 
 .file-info .size {
     color: #94a3b8;
-    font-size: 0.85rem;
-    margin: 0;
+    font-size: 0.9rem;
+    margin-top: 2px;
 }
 
 /* Action Bar */
 .action-bar {
-    margin-top: 40px;
+    margin-top: 48px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 }
 
 .loading-bar {
-    height: 6px;
-    border-radius: 3px;
+    height: 8px;
+    border-radius: 4px;
 }
 
 .submit-btn {
-    height: 56px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: 12px;
-    background: linear-gradient(to right, #3b82f6, #8b5cf6) !important;
+    height: 60px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
     color: #fff !important;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.5px;
 }
 
 .submit-btn:not(:disabled):hover {
-    box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(96, 165, 250, 0.5);
+    transform: translateY(-3px) scale(1.01);
 }
 
 .submit-btn:disabled {
     background: #334155 !important;
     color: #64748b !important;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .page-header .title {
-        font-size: 2rem;
-    }
-
-    .glass-card {
-        padding: 24px;
-        border-radius: 16px;
-    }
-
+@media (max-width: 850px) {
     .grid-layout.cols-2 {
         grid-template-columns: 1fr;
     }
 
+    .full-width {
+        grid-column: span 1;
+    }
+
+    .page-header .title {
+        font-size: 2.25rem;
+    }
+
+    .glass-card {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .upload-page {
+        padding: 20px 15px;
+    }
+
+    .page-header .title {
+        font-size: 1.75rem;
+    }
+
+    .section-title span {
+        font-size: 1rem;
+    }
+
     .upload-zone {
-        padding: 24px;
+        padding: 40px 20px;
     }
 }

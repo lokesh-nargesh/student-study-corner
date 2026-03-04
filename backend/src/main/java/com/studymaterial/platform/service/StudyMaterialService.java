@@ -1,23 +1,29 @@
 package com.studymaterial.platform.service;
 
-import com.studymaterial.platform.entity.*;
-import com.studymaterial.platform.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.List;
+import com.studymaterial.platform.entity.ApprovalStatus;
+import com.studymaterial.platform.entity.MaterialType;
+import com.studymaterial.platform.entity.StudyMaterial;
+import com.studymaterial.platform.entity.User;
+import com.studymaterial.platform.repository.StudyMaterialRepository;
+import com.studymaterial.platform.repository.UserRepository;
 
 @Service
 public class StudyMaterialService {
-    @Autowired
-    StudyMaterialRepository studyMaterialRepository;
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    SubjectRepository subjectRepository;
+    private final StudyMaterialRepository studyMaterialRepository;
+    private final UserRepository userRepository;
+
+    public StudyMaterialService(StudyMaterialRepository studyMaterialRepository,
+                                UserRepository userRepository) {
+        this.studyMaterialRepository = studyMaterialRepository;
+        this.userRepository = userRepository;
+    }
 
     @Transactional
     public StudyMaterial uploadMaterial(StudyMaterial material, String collegeId) {

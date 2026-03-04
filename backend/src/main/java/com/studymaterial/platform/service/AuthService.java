@@ -1,13 +1,7 @@
 package com.studymaterial.platform.service;
 
-import com.studymaterial.platform.dto.JwtResponse;
-import com.studymaterial.platform.dto.LoginRequest;
-import com.studymaterial.platform.dto.RegisterRequest;
-import com.studymaterial.platform.entity.Role;
-import com.studymaterial.platform.entity.User;
-import com.studymaterial.platform.repository.*;
-import com.studymaterial.platform.security.JwtUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.UUID;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,37 +10,50 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.UUID;
+import com.studymaterial.platform.dto.JwtResponse;
+import com.studymaterial.platform.dto.LoginRequest;
+import com.studymaterial.platform.dto.RegisterRequest;
+import com.studymaterial.platform.entity.Role;
+import com.studymaterial.platform.entity.User;
+import com.studymaterial.platform.repository.AcademicYearRepository;
+import com.studymaterial.platform.repository.BranchRepository;
+import com.studymaterial.platform.repository.CourseRepository;
+import com.studymaterial.platform.repository.SemesterRepository;
+import com.studymaterial.platform.repository.UserRepository;
+import com.studymaterial.platform.security.JwtUtils;
 
 @Service
 public class AuthService {
 
-    @Autowired
-    AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    private final CourseRepository courseRepository;
+    private final BranchRepository branchRepository;
+    private final AcademicYearRepository academicYearRepository;
+    private final SemesterRepository semesterRepository;
+    private final PasswordEncoder encoder;
+    private final JwtUtils jwtUtils;
+    private final EmailService emailService;
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    CourseRepository courseRepository;
-
-    @Autowired
-    BranchRepository branchRepository;
-
-    @Autowired
-    AcademicYearRepository academicYearRepository;
-
-    @Autowired
-    SemesterRepository semesterRepository;
-
-    @Autowired
-    PasswordEncoder encoder;
-
-    @Autowired
-    JwtUtils jwtUtils;
-
-    @Autowired
-    EmailService emailService;
+    public AuthService(AuthenticationManager authenticationManager,
+                       UserRepository userRepository,
+                       CourseRepository courseRepository,
+                       BranchRepository branchRepository,
+                       AcademicYearRepository academicYearRepository,
+                       SemesterRepository semesterRepository,
+                       PasswordEncoder encoder,
+                       JwtUtils jwtUtils,
+                       EmailService emailService) {
+        this.authenticationManager = authenticationManager;
+        this.userRepository = userRepository;
+        this.courseRepository = courseRepository;
+        this.branchRepository = branchRepository;
+        this.academicYearRepository = academicYearRepository;
+        this.semesterRepository = semesterRepository;
+        this.encoder = encoder;
+        this.jwtUtils = jwtUtils;
+        this.emailService = emailService;
+    }
 
     public JwtResponse authenticateUser(LoginRequest loginRequest) {
         // Find user and check if email is verified

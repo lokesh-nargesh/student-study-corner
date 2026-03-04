@@ -1,35 +1,49 @@
 package com.studymaterial.platform.service;
 
-import com.studymaterial.platform.entity.*;
-import com.studymaterial.platform.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.studymaterial.platform.entity.ApprovalStatus;
+import com.studymaterial.platform.entity.Branch;
+import com.studymaterial.platform.entity.Course;
+import com.studymaterial.platform.entity.Role;
+import com.studymaterial.platform.entity.StudyMaterial;
+import com.studymaterial.platform.entity.Subject;
+import com.studymaterial.platform.entity.User;
+import com.studymaterial.platform.repository.BranchRepository;
+import com.studymaterial.platform.repository.CourseRepository;
+import com.studymaterial.platform.repository.StudyMaterialRepository;
+import com.studymaterial.platform.repository.SubjectRepository;
+import com.studymaterial.platform.repository.UserRepository;
+
 @Service
 public class AdminService {
 
-    @Autowired
-    CourseRepository courseRepository;
-    @Autowired
-    BranchRepository branchRepository;
-    @Autowired
-    AcademicYearRepository academicYearRepository;
-    @Autowired
-    SemesterRepository semesterRepository;
-    @Autowired
-    SubjectRepository subjectRepository;
-    @Autowired
-    StudyMaterialRepository studyMaterialRepository;
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    private final CourseRepository courseRepository;
+    private final BranchRepository branchRepository;
+    private final SubjectRepository subjectRepository;
+    private final StudyMaterialRepository studyMaterialRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
+    public AdminService(CourseRepository courseRepository,
+                        BranchRepository branchRepository,
+                        SubjectRepository subjectRepository,
+                        StudyMaterialRepository studyMaterialRepository,
+                        UserRepository userRepository,
+                        PasswordEncoder passwordEncoder) {
+        this.courseRepository = courseRepository;
+        this.branchRepository = branchRepository;
+        this.subjectRepository = subjectRepository;
+        this.studyMaterialRepository = studyMaterialRepository;
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     // ==================== Course Management ====================
     public List<Course> getAllCourses() {

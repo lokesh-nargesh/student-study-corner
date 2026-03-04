@@ -59,16 +59,10 @@
                         </mat-form-field>
 
                         <mat-form-field appearance="outline">
-                            <mat-label>Year</mat-label>
-                            <input matInput formControlName="year" placeholder="2024">
-                            <mat-icon matSuffix>calendar_today</mat-icon>
-                        </mat-form-field>
-
-                        <mat-form-field appearance="outline">
-                            <mat-label>Semester</mat-label>
-                            <mat-select formControlName="semesterId">
-                                <mat-option *ngFor="let sem of semesters" [value]="sem.id">
-                                    Semester {{ sem.semesterNumber }}
+                            <mat-label>Course</mat-label>
+                            <mat-select formControlName="courseId" (selectionChange)="onCourseChange()">
+                                <mat-option *ngFor="let course of courses" [value]="course.id">
+                                    {{ course.name }}
                                 </mat-option>
                             </mat-select>
                             <mat-icon matSuffix>school</mat-icon>
@@ -76,12 +70,42 @@
 
                         <mat-form-field appearance="outline">
                             <mat-label>Branch</mat-label>
-                            <mat-select formControlName="branchId">
+                            <mat-select formControlName="branchId" (selectionChange)="onBranchChange()">
                                 <mat-option *ngFor="let branch of branches" [value]="branch.id">
                                     {{ branch.name }}
                                 </mat-option>
                             </mat-select>
                             <mat-icon matSuffix>account_tree</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Academic Year</mat-label>
+                            <mat-select formControlName="academicYearId" (selectionChange)="onYearChange()">
+                                <mat-option *ngFor="let year of academicYears" [value]="year.id">
+                                    {{ year.year }} Year
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>calendar_today</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Semester</mat-label>
+                            <mat-select formControlName="semesterId" (selectionChange)="onSemesterChange()">
+                                <mat-option *ngFor="let sem of semesters" [value]="sem.id">
+                                    Semester {{ sem.semesterNumber }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>looks_one</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Subject</mat-label>
+                            <mat-select formControlName="subjectId">
+                                <mat-option *ngFor="let sub of subjects" [value]="sub.id">
+                                    {{ sub.name }} ({{ sub.subjectCode }})
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>book</mat-icon>
                         </mat-form-field>
                     </div>
                 </div>

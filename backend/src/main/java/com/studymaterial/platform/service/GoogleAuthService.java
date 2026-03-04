@@ -1,24 +1,28 @@
 package com.studymaterial.platform.service;
 
+import java.util.Map;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 import com.studymaterial.platform.dto.JwtResponse;
 import com.studymaterial.platform.entity.Role;
 import com.studymaterial.platform.entity.User;
 import com.studymaterial.platform.repository.UserRepository;
 import com.studymaterial.platform.security.JwtUtils;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.Map;
-import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class GoogleAuthService {
 
     private final UserRepository userRepository;
     private final JwtUtils jwtUtils;
+
+    public GoogleAuthService(UserRepository userRepository, JwtUtils jwtUtils) {
+        this.userRepository = userRepository;
+        this.jwtUtils = jwtUtils;
+    }
 
     @Value("${google.client-id:}")
     private String googleClientId;
