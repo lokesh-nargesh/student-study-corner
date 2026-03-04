@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>My Uploads</h1>
+    <div class="uploads-grid">
+        <mat-card *ngFor="let m of uploads" class="upload-card">
+            <mat-card-header>
+                <mat-card-title>{{ m.title }}</mat-card-title>
+                <mat-card-subtitle>
+                    <mat-chip-set>
+                        <mat-chip
+                            [class]="m.approvalStatus === 'APPROVED' ? 'approved' : m.approvalStatus === 'REJECTED' ? 'rejected' : 'pending'">
+                            {{ m.approvalStatus }}
+                        </mat-chip>
+                    </mat-chip-set>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{ m.description }}</p>
+                <p><strong>Subject:</strong> {{ m.subjectName }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <a [href]="m.fileUrl" target="_blank" mat-button color="primary"><mat-icon>download</mat-icon> View</a>
+                <button mat-button color="warn" (click)="delete(m.id)"><mat-icon>delete</mat-icon> Delete</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+    <p *ngIf="uploads.length === 0" class="no-uploads">You haven't uploaded any materials yet.</p>
+</div>

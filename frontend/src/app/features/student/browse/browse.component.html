@@ -1,0 +1,32 @@
+<div class="browse-container">
+    <div class="browse-header">
+        <h1>All Study Materials</h1>
+    </div>
+
+    <div class="materials-grid">
+        <mat-card *ngFor="let m of materials" class="material-card">
+            <div class="card-thumbnail">
+                <div class="thumbnail-overlay">
+                    <span class="type-badge">{{ formatType(m.materialType) }}</span>
+                </div>
+            </div>
+            <mat-card-content class="card-body">
+                <h3 class="card-title">{{ m.title || m.subjectName }}</h3>
+                <div class="card-info">
+                    <p><strong>Branch:</strong> {{ m.branchName || 'N/A' }}</p>
+                    <p><strong>Semester:</strong> {{ m.semesterNumber || 'N/A' }}</p>
+                    <p><strong>Type:</strong> {{ formatType(m.materialType) }}</p>
+                    <p><strong>By:</strong> {{ m.uploadedByName }}</p>
+                </div>
+                <div class="card-actions">
+                    <a [href]="m.fileUrl" target="_blank" mat-raised-button color="primary"
+                        (click)="incrementDownload(m.id)">
+                        <mat-icon>download</mat-icon> View Paper
+                    </a>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <p *ngIf="materials.length === 0" class="no-data">No approved materials yet.</p>
+</div>

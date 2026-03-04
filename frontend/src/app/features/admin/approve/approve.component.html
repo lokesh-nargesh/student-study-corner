@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>Pending Approval</h1>
+    <div *ngFor="let material of pending" class="material-item">
+        <h3>{{material.title}}</h3>
+        <p>{{material.description}}</p>
+        <button mat-raised-button color="primary" (click)="approve(material.id)">Approve</button>
+        <button mat-raised-button color="warn" (click)="reject(material.id)">Reject</button>
+    </div>
+</div>

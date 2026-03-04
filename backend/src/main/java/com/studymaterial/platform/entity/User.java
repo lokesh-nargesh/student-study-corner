@@ -88,6 +88,6 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return !isDeleted() && emailVerified;
+        return !isDeleted(); // Removed emailVerified check to allow initial login
     }
 }

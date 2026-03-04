@@ -1,0 +1,32 @@
+.container {
+    padding: 30px;
+}
+
+.uploads-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.upload-card {
+    width: 300px;
+}
+
+.approved {
+    background-color: #4caf50 !important;
+    color: #fff !important;
+}
+
+.rejected {
+    background-color: #f44336 !important;
+    color: #fff !important;
+}
+
+.pending {
+    background-color: #ff9800 !important;
+    color: #fff !important;
+}
+
+.no-uploads {
+    margin-top: 20px;
+}

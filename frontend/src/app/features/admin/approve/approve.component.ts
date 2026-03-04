@@ -10,17 +10,8 @@ import { environment } from '../../../../environments/environment';
     selector: 'app-approve-materials',
     standalone: true,
     imports: [CommonModule, MatCardModule, MatButtonModule],
-    template: `
-    <div class="container">
-      <h1>Pending Approval</h1>
-      <div *ngFor="let material of pending" class="material-item" style="border: 1px solid #ccc; margin: 10px 0; padding: 15px;">
-        <h3>{{material.title}}</h3>
-        <p>{{material.description}}</p>
-        <button mat-raised-button color="primary" (click)="approve(material.id)">Approve</button>
-        <button mat-raised-button color="warn" (click)="reject(material.id)" style="margin-left: 10px;">Reject</button>
-      </div>
-    </div>
-  `
+    templateUrl: './approve.component.html',
+    styleUrl: './approve.component.css'
 })
 export class ApproveMaterialsComponent implements OnInit {
     private http = inject(HttpClient);

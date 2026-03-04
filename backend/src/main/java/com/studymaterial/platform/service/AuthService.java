@@ -53,9 +53,9 @@ public class AuthService {
         User user = userRepository.findByCollegeId(loginRequest.getCollegeId())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (!user.isEmailVerified()) {
-            throw new RuntimeException("Please verify your email before logging in.");
-        }
+//        if (!user.isEmailVerified()) {
+//            throw new RuntimeException("Please verify your email before logging in.");
+//        }
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getCollegeId(), loginRequest.getPassword()));

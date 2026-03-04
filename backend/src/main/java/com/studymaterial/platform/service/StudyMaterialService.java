@@ -25,10 +25,13 @@ public class StudyMaterialService {
         material.setUploadedBy(user);
         material.setUploadDate(LocalDateTime.now());
         material.setApprovalStatus(ApprovalStatus.PENDING);
-        material.setCourse(user.getCourse());
-        material.setBranch(user.getBranch());
-        material.setAcademicYear(user.getAcademicYear());
-        material.setSemester(user.getSemester());
+
+        // Respect metadata from form if provided, otherwise use user defaults
+        if (material.getCourse() == null) material.setCourse(user.getCourse());
+        if (material.getBranch() == null) material.setBranch(user.getBranch());
+        if (material.getAcademicYear() == null) material.setAcademicYear(user.getAcademicYear());
+        if (material.getSemester() == null) material.setSemester(user.getSemester());
+
         return studyMaterialRepository.save(material);
     }
 

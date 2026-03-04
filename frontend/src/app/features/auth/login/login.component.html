@@ -1,0 +1,25 @@
+<div class="login-container">
+    <mat-card class="login-card">
+        <mat-card-header>
+            <mat-card-title>Login to Study Material Platform</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+                <mat-form-field appearance="outline">
+                    <mat-label>College ID</mat-label>
+                    <input matInput formControlName="collegeId" placeholder="e.g. CS2024001">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                </mat-form-field>
+
+                <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>
+            </form>
+            <p class="register-link">
+                Don't have an account? <a routerLink="/register">Register here</a>
+            </p>
+        </mat-card-content>
+    </mat-card>
+</div>

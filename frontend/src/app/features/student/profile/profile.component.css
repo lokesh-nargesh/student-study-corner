@@ -1,0 +1,19 @@
+.profile-container {
+    padding: 30px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.profile-card {
+    border-radius: 12px;
+}
+
+.profile-avatar {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+}
+
+.profile-content {
+    padding: 20px;
+}

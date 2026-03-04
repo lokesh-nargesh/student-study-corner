@@ -1,0 +1,36 @@
+.app-toolbar {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-right: 24px;
+    letter-spacing: 1px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.active-link {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.profile-btn {
+    text-transform: capitalize;
+}
+
+.user-name {
+    margin: 0 4px;
+    font-weight: 500;
+}
+
+button[mat-button] {
+    color: #fff !important;
+}

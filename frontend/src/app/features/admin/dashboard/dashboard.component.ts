@@ -8,21 +8,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 
 @Component({
-    selector: 'app-admin-dashboard',
-    standalone: true,
-    imports: [CommonModule, MatCardModule, MatButtonModule, MatTableModule, RouterModule],
-    template: `
-    <div class="container">
-      <h1>Admin Dashboard</h1>
-      <mat-card>
-        <mat-card-header><mat-card-title>Analytics Summary</mat-card-title></mat-card-header>
-        <mat-card-content style="padding: 20px;">
-           <button mat-raised-button color="primary" routerLink="/admin/approve">
-             Approve Pending Materials
-           </button>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  `
+  selector: 'app-admin-dashboard',
+  standalone: true,
+  imports: [CommonModule, MatCardModule, MatButtonModule, MatTableModule, RouterModule],
+  templateUrl: './dashboard.component.html'
 })
 export class AdminDashboardComponent { }

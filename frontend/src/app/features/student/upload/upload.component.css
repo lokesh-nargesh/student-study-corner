@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+
+.upload-page {
+    min-height: calc(100vh - 64px);
+    background: #0f172a;
+    /* Dark slate background */
+    background-image:
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0, transparent 50%);
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+/* Background Animated Blobs */
+.background-blobs .blob {
+    position: absolute;
+    filter: blur(80px);
+    z-index: 0;
+    border-radius: 50%;
+    opacity: 0.4;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: #3b82f6;
+    top: -100px;
+    left: -100px;
+}
+
+.blob-2 {
+    width: 350px;
+    height: 350px;
+    background: #8b5cf6;
+    bottom: -50px;
+    right: -50px;
+}
+
+.content-container {
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #fff;
+}
+
+.page-header .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    background: linear-gradient(to right, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-header .subtitle {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    font-weight: 300;
+}
+
+/* Glass Card styling */
+.glass-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.form-section {
+    margin-bottom: 32px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: #e2e8f0;
+}
+
+.section-title mat-icon {
+    color: #60a5fa;
+    font-size: 22px;
+}
+
+.section-title span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Layout Grid */
+.grid-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.grid-layout.cols-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* Form Field Overrides */
+::ng-deep .mat-mdc-form-field {
+    width: 100%;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+    background: rgba(15, 23, 42, 0.5) !important;
+    border-radius: 12px !important;
+}
+
+::ng-deep .mat-mdc-form-field-focus-indicator {
+    display: none;
+}
+
+::ng-deep .mat-mdc-form-field-outline {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+::ng-deep .mat-mdc-input-element,
+::ng-deep .mat-mdc-select-value-text,
+::ng-deep .mat-mdc-floating-label {
+    color: #e2e8f0 !important;
+}
+
+/* Upload Zone */
+.upload-zone {
+    border: 2px dashed rgba(96, 165, 250, 0.3);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(15, 23, 42, 0.3);
+}
+
+.upload-zone:hover {
+    border-color: #60a5fa;
+    background: rgba(96, 165, 250, 0.05);
+    transform: translateY(-2px);
+}
+
+.upload-zone.has-file {
+    border-style: solid;
+    border-color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.upload-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    color: #60a5fa;
+    margin-bottom: 16px;
+}
+
+.pulse {
+    animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+.upload-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.upload-hint {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+/* File Preview */
+.file-preview {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+}
+
+.file-icon {
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    color: #10b981;
+}
+
+.file-info {
+    flex: 1;
+}
+
+.file-info .name {
+    color: #fff;
+    font-weight: 500;
+    margin: 0;
+    word-break: break-all;
+}
+
+.file-info .size {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Action Bar */
+.action-bar {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.loading-bar {
+    height: 6px;
+    border-radius: 3px;
+}
+
+.submit-btn {
+    height: 56px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    background: linear-gradient(to right, #3b82f6, #8b5cf6) !important;
+    color: #fff !important;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:not(:disabled):hover {
+    box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+    transform: translateY(-2px);
+}
+
+.submit-btn:disabled {
+    background: #334155 !important;
+    color: #64748b !important;
+    opacity: 0.5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .page-header .title {
+        font-size: 2rem;
+    }
+
+    .glass-card {
+        padding: 24px;
+        border-radius: 16px;
+    }
+
+    .grid-layout.cols-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .upload-zone {
+        padding: 24px;
+    }
+}

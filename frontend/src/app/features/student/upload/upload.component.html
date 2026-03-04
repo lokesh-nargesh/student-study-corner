@@ -1,0 +1,133 @@
+<div class="upload-page">
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="content-container">
+        <header class="page-header">
+            <h1 class="title">Share Knowledge</h1>
+            <p class="subtitle">Upload study materials to help your fellow students</p>
+        </header>
+
+        <div class="glass-card">
+            <form [formGroup]="uploadForm" (ngSubmit)="onSubmit()" class="modern-form">
+
+                <!-- Form Section: Basic Info -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <mat-icon>info</mat-icon>
+                        <span>General Information</span>
+                    </div>
+
+                    <div class="grid-layout">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Subject / Title</mat-label>
+                            <input matInput formControlName="title" placeholder="e.g. Data Structures Notes">
+                            <mat-icon matSuffix>title</mat-icon>
+                            <mat-error *ngIf="uploadForm.get('title')?.hasError('required')">Title is
+                                required</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput formControlName="description" rows="2"
+                                placeholder="Tell us more about this material..."></textarea>
+                            <mat-icon matSuffix>description</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Form Section: Classification -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <mat-icon>category</mat-icon>
+                        <span>Classification</span>
+                    </div>
+
+                    <div class="grid-layout cols-2">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Material Type</mat-label>
+                            <mat-select formControlName="materialType">
+                                <mat-option value="NOTES">Notes</mat-option>
+                                <mat-option value="ASSIGNMENT">Assignment</mat-option>
+                                <mat-option value="MID_SEM">Mid Sem Papers</mat-option>
+                                <mat-option value="SEM_EXAM">End Sem Papers</mat-option>
+                                <mat-option value="OLD_PAPER">Old Question Papers</mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>list</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Year</mat-label>
+                            <input matInput formControlName="year" placeholder="2024">
+                            <mat-icon matSuffix>calendar_today</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Semester</mat-label>
+                            <mat-select formControlName="semesterId">
+                                <mat-option *ngFor="let sem of semesters" [value]="sem.id">
+                                    Semester {{ sem.semesterNumber }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>school</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Branch</mat-label>
+                            <mat-select formControlName="branchId">
+                                <mat-option *ngFor="let branch of branches" [value]="branch.id">
+                                    {{ branch.name }}
+                                </mat-option>
+                            </mat-select>
+                            <mat-icon matSuffix>account_tree</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Form Section: File Upload -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <mat-icon>attach_file</mat-icon>
+                        <span>File Attachment</span>
+                    </div>
+
+                    <div class="upload-zone" (click)="fileInput.click()" [class.has-file]="selectedFile">
+                        <input type="file" #fileInput (change)="onFileSelected($event)" hidden
+                            accept=".pdf,.doc,.docx,.ppt,.pptx">
+
+                        <div class="upload-placeholder" *ngIf="!selectedFile">
+                            <mat-icon class="upload-icon pulse">cloud_upload</mat-icon>
+                            <p class="upload-text">Drag & drop or click to upload</p>
+                            <p class="upload-hint">Supported: PDF, DOC, PPT</p>
+                        </div>
+
+                        <div class="file-preview" *ngIf="selectedFile">
+                            <mat-icon class="file-icon">insert_drive_file</mat-icon>
+                            <div class="file-info">
+                                <p class="name">{{ selectedFile.name }}</p>
+                                <p class="size">{{ (selectedFile.size / 1024).toFixed(1) }} KB</p>
+                            </div>
+                            <button mat-icon-button color="warn" (click)="$event.stopPropagation(); selectedFile = null"
+                                matTooltip="Remove file">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Items -->
+                <div class="action-bar">
+                    <mat-progress-bar *ngIf="uploading" mode="indeterminate" class="loading-bar"></mat-progress-bar>
+                    <button mat-flat-button color="primary" type="submit" class="submit-btn"
+                        [disabled]="uploadForm.invalid || !selectedFile || uploading">
+                        <mat-icon>{{ uploading ? 'sync' : 'publish' }}</mat-icon>
+                        {{ uploading ? 'Uploading...' : 'Submit Material' }}
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
