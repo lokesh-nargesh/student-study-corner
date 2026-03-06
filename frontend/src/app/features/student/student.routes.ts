@@ -1,15 +1,10 @@
 import { Routes } from '@angular/router';
-import { StudentDashboardComponent } from './dashboard/dashboard.component';
-import { UploadMaterialComponent } from './upload/upload.component';
-import { BrowseMaterialsComponent } from './browse/browse.component';
-import { MyUploadsComponent } from './my-uploads/my-uploads.component';
-import { ProfileComponent } from './profile/profile.component';
 
 export const STUDENT_ROUTES: Routes = [
-    { path: 'dashboard', component: StudentDashboardComponent },
-    { path: 'upload', component: UploadMaterialComponent },
-    { path: 'browse', component: BrowseMaterialsComponent },
-    { path: 'my-uploads', component: MyUploadsComponent },
-    { path: 'profile', component: ProfileComponent },
+    { path: 'dashboard', loadComponent: () => import('./dashboard/dashboard.component').then(m => m.StudentDashboardComponent) },
+    { path: 'upload', loadComponent: () => import('./upload/upload.component').then(m => m.UploadMaterialComponent) },
+    { path: 'browse', loadComponent: () => import('./browse/browse.component').then(m => m.BrowseMaterialsComponent) },
+    { path: 'my-uploads', loadComponent: () => import('./my-uploads/my-uploads.component').then(m => m.MyUploadsComponent) },
+    { path: 'profile', loadComponent: () => import('./profile/profile.component').then(m => m.ProfileComponent) },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];

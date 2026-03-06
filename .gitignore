@@ -85,3 +85,6 @@ pids/
 
 # Windows files
 ehthumbs.db
+
+# Local Maven cache
+.m2/

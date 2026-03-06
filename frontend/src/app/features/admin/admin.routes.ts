@@ -1,9 +1,7 @@
 import { Routes } from '@angular/router';
-import { AdminDashboardComponent } from './dashboard/dashboard.component';
-import { ApproveMaterialsComponent } from './approve/approve.component';
 
 export const ADMIN_ROUTES: Routes = [
-    { path: 'dashboard', component: AdminDashboardComponent },
-    { path: 'approve', component: ApproveMaterialsComponent },
+    { path: 'dashboard', loadComponent: () => import('./dashboard/dashboard.component').then(m => m.AdminDashboardComponent) },
+    { path: 'approve', loadComponent: () => import('./approve/approve.component').then(m => m.ApproveMaterialsComponent) },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];

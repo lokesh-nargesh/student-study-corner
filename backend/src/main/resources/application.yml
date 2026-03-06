@@ -2,10 +2,10 @@ spring:
   application:
     name: study-material-platform
   datasource:
-    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
-    driver-class-name: ${DB_DRIVER}
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:study_material_db}?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,36 +16,36 @@ spring:
         format_sql: true
   servlet:
     multipart:
-      max-file-size: ${MAX_FILE_SIZE}
-      max-request-size: ${MAX_REQUEST_SIZE}
+      max-file-size: ${MAX_FILE_SIZE:50MB}
+      max-request-size: ${MAX_REQUEST_SIZE:50MB}
   mail:
-    host: ${MAIL_HOST}
-    port: ${MAIL_PORT}
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
     properties:
       mail:
         smtp:
-          auth: ${MAIL_SMTP_AUTH}
+          auth: ${MAIL_SMTP_AUTH:true}
           starttls:
-            enable: ${MAIL_SMTP_STARTTLS_ENABLE}
-          connection-timeout: ${MAIL_SMTP_CONNECTION_TIMEOUT}
-          timeout: ${MAIL_SMTP_TIMEOUT}
-          write-timeout: ${MAIL_SMTP_WRITE_TIMEOUT}
+            enable: ${MAIL_SMTP_STARTTLS_ENABLE:true}
+          connection-timeout: ${MAIL_SMTP_CONNECTION_TIMEOUT:5000}
+          timeout: ${MAIL_SMTP_TIMEOUT:5000}
+          write-timeout: ${MAIL_SMTP_WRITE_TIMEOUT:5000}
 
 app:
   jwt:
-    secret: ${JWT_SECRET}
-    expiration: ${JWT_EXPIRATION}
-  base-url: ${APP_BASE_URL}
+    secret: ${JWT_SECRET:5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437}
+    expiration: ${JWT_EXPIRATION:86400000}
+  base-url: ${APP_BASE_URL:http://localhost:8080}
 
 google:
-  client-id: ${GOOGLE_CLIENT_ID}
+  client-id: ${GOOGLE_CLIENT_ID:}
 
 logging:
   level:
-    org.springframework.security: ${LOG_LEVEL_SECURITY}
-    com.studymaterial.platform: ${LOG_LEVEL_APP}
+    org.springframework.security: ${LOG_LEVEL_SECURITY:INFO}
+    com.studymaterial.platform: ${LOG_LEVEL_APP:INFO}
 
 springdoc:
   api-docs:
